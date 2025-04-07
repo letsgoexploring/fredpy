@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>fredpy Examples &#8212; fredpy 3.2.9 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Additional fredpy Functions" href="additional_functions.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          fredpy</a>
+        <span class="navbar-text navbar-version pull-left"><b>3.2</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="series_class.html"><code class="docutils literal notranslate"><span class="pre">fredpy.series</span></code> class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional_functions.html">Additional <code class="docutils literal notranslate"><span class="pre">fredpy</span></code> Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">fredpy</span></code> Examples</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">fredpy</span></code> Examples</a><ul>
+<li><a class="reference internal" href="#Load-API-key">Load API key</a></li>
+<li><a class="reference internal" href="#Preliminary-example">Preliminary example</a></li>
+<li><a class="reference internal" href="#A-closer-look-at-fredpy-using-real-GDP-data">A closer look at <code class="docutils literal notranslate"><span class="pre">fredpy</span></code> using real GDP data</a><ul>
+<li><a class="reference internal" href="#Attributes">Attributes</a></li>
+<li><a class="reference internal" href="#Methods">Methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#More-examples">More examples</a><ul>
+<li><a class="reference internal" href="#Comparison-of-CPI-and-GDP-deflator-inflation">Comparison of CPI and GDP deflator inflation</a></li>
+<li><a class="reference internal" href="#Equalizing-date-ranges-of-different-series">Equalizing date ranges of different series</a></li>
+<li><a class="reference internal" href="#Filtering-1:-Extracting-business-cycle-components-from-quarterly-data-with-the-HP-filter">Filtering 1: Extracting business cycle components from quarterly data with the HP filter</a></li>
+<li><a class="reference internal" href="#Filtering-2:-Extracting-business-cycle-components-from-monthly-data">Filtering 2: Extracting business cycle components from monthly data</a></li>
+<li><a class="reference internal" href="#Vintage-Data">Vintage Data</a></li>
+<li><a class="reference internal" href="#Exporting-data-sets">Exporting data sets</a></li>
+<li><a class="reference internal" href="#Custom-API-querries">Custom API querries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="additional_functions.html" title="Previous Chapter: Additional fredpy Functions"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Additional fr...</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/fredpy_examples.ipynb.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <section id="fredpy-Examples">
+<h1><code class="docutils literal notranslate"><span class="pre">fredpy</span></code> Examples<a class="headerlink" href="#fredpy-Examples" title="Permalink to this heading">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">fredpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">fp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Use matplotlib&#39;s &#39;classic&#39; style, set figure facecolor to white</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;classic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;figure.facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<section id="Load-API-key">
+<h2>Load API key<a class="headerlink" href="#Load-API-key" title="Permalink to this heading">¶</a></h2>
+<p>First apply for an API key for FRED here: <a class="reference external" href="https://research.stlouisfed.org/docs/api/api_key.html">https://research.stlouisfed.org/docs/api/api_key.html</a>. The API key is a 32 character string that is required for making requests from FRED. Save your API key in the <code class="docutils literal notranslate"><span class="pre">fp</span></code> namespace by either setting the <code class="docutils literal notranslate"><span class="pre">fp.api_key</span></code> directly:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fp</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;################################&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>or by reading from a text file containing only the text of the API key in the first line:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fp</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">load_api_key</span><span class="p">(</span><span class="s1">&#39;fred_api_key.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">fred_api_key.txt</span></code> is not in the same directory as your program file, then you must supply the full path of the file.</p>
+</section>
+<section id="Preliminary-example">
+<h2>Preliminary example<a class="headerlink" href="#Preliminary-example" title="Permalink to this heading">¶</a></h2>
+<p>Downloading and plotting unemployment rate data for the US is easy with <code class="docutils literal notranslate"><span class="pre">fredpy</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;UNRATE&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="n">u</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Percent&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_8_0.png" src="_images/fredpy_examples_8_0.png" />
+</div>
+</div>
+</section>
+<section id="A-closer-look-at-fredpy-using-real-GDP-data">
+<h2>A closer look at <code class="docutils literal notranslate"><span class="pre">fredpy</span></code> using real GDP data<a class="headerlink" href="#A-closer-look-at-fredpy-using-real-GDP-data" title="Permalink to this heading">¶</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">fredpy</span></code> to download real GDP data. The FRED page for real GDP: <a class="reference external" href="https://fred.stlouisfed.org/series/GDPC1">https://fred.stlouisfed.org/series/GDPC1</a>. Note that the series ID - <code class="docutils literal notranslate"><span class="pre">GDPC1</span></code> - is in the URL and is visible in several places on the page.</p>
+<p>The data in text format is located at: <a class="reference external" href="https://fred.stlouisfed.org/data/gdpc1.txt">https://fred.stlouisfed.org/data/gdpc1.txt</a>. When supplied with the series ID <code class="docutils literal notranslate"><span class="pre">GDPC1</span></code>, <code class="docutils literal notranslate"><span class="pre">fredpy</span></code> visits the the URL for the text-formatted data, reads the information on the page, and stores the data as attributes of a <a class="reference internal" href="series_class.html#fredpy.series" title="fredpy.series"><code class="xref py py-class docutils literal notranslate"><span class="pre">fredpy.series</span></code></a> instance.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download quarterly real GDP data using `fredpy`. Save the data in a variable called gdp</span>
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;gdpc1&#39;</span><span class="p">)</span>
+
+<span class="c1"># Note that gdp is an instance of the `fredpy.series` class</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">gdp</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;fredpy.series&#39;&gt;
+</pre></div></div>
+</div>
+<section id="Attributes">
+<h3>Attributes<a class="headerlink" href="#Attributes" title="Permalink to this heading">¶</a></h3>
+<p>A <a class="reference internal" href="series_class.html#fredpy.series" title="fredpy.series"><code class="xref py py-class docutils literal notranslate"><span class="pre">fredpy.series</span></code></a> instance stores information about a FRED series in 17 attribues:</p>
+<ul class="simple">
+<li><p><strong>data:</strong> (Pandas Series) - data values.</p></li>
+<li><p><strong>date_range:</strong> (string) - specifies the dates of the first and last observations.</p></li>
+<li><p><strong>frequency:</strong> (string) - data frequency. ‘Daily’, ‘Weekly’, ‘Monthly’, ‘Quarterly’, ‘Semiannual’, or ‘Annual’.</p></li>
+<li><p><strong>frequency_short:</strong> (string) - data frequency. Abbreviated. ‘D’, ‘W’, ‘M’, ‘Q’, ‘SA, or ‘A’.</p></li>
+<li><p><strong>last_updated:</strong> (string) - date series was last updated.</p></li>
+<li><p><strong>notes:</strong> (string) - details about series. Not available for all series.</p></li>
+<li><p><strong>observation_date:</strong> (string) – vintage date at which data are observed.</p></li>
+<li><p><strong>release:</strong> (string) - statistical release containing data.</p></li>
+<li><p><strong>seasonal_adjustment:</strong> (string) - specifies whether the data has been seasonally adjusted.</p></li>
+<li><p><strong>seasonal_adjustment_short:</strong> (string) - specifies whether the data has been seasonally adjusted. Abbreviated.</p></li>
+<li><p><strong>series_id:</strong> (string) - unique FRED series ID code.</p></li>
+<li><p><strong>source:</strong> (string) - original source of the data.</p></li>
+<li><p><strong>t:</strong> (int) - number corresponding to frequency: 365 for daily, 52 for weekly, 12 for monthly, 4 for quarterly, and 1 for annual.</p></li>
+<li><p><strong>title:</strong> (string) - title of the data series.</p></li>
+<li><p><strong>units:</strong> (string) - units of the data series.</p></li>
+<li><p><strong>units_short:</strong> (string) - units of the data series. Abbreviated.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the title, the units, the frequency, the date range, and the source of the gdp data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">date_range</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Real Gross Domestic Product
+Billions of Chained 2012 Dollars
+Quarterly
+Range: 1947-01-01 to 2022-10-01
+U.S. Bureau of Economic Analysis
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the last 4 values of the gdp data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:],</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+date
+2022-01-01    19924.088
+2022-04-01    19895.271
+2022-07-01    20054.663
+2022-10-01    20198.091
+Freq: QS-OCT, Name: value, dtype: float64
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot real GDP data</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">units</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_14_0.png" src="_images/fredpy_examples_14_0.png" />
+</div>
+</div>
+</section>
+<section id="Methods">
+<h3>Methods<a class="headerlink" href="#Methods" title="Permalink to this heading">¶</a></h3>
+<p>A <a class="reference internal" href="series_class.html#fredpy.series" title="fredpy.series"><code class="xref py py-class docutils literal notranslate"><span class="pre">fredpy.series</span></code></a> instance has 20 methods:</p>
+<ul class="simple">
+<li><p><strong>apc</strong>(log=False, backward=True)</p></li>
+<li><p><strong>as_frequency</strong>(freq=None,method=’mean’)</p></li>
+<li><p><strong>bp_filter</strong>(low=6, high=32, K=12)</p></li>
+<li><p><strong>cf_filter</strong>(low=6, high=32)</p></li>
+<li><p><strong>copy</strong>()</p></li>
+<li><p><strong>diff_filter</strong>()</p></li>
+<li><p><strong>divide</strong>(object2)</p></li>
+<li><p><strong>dropn_nan</strong>()</p></li>
+<li><p><strong>hp_filter</strong>(lamb=1600)</p></li>
+<li><p><strong>linear_filter</strong>()</p></li>
+<li><p><strong>log</strong>()</p></li>
+<li><p><strong>ma</strong>(length,center=False)</p></li>
+<li><p><strong>minus</strong>(object2)</p></li>
+<li><p><strong>pc</strong>(log=False, backward=True, annualized=False)</p></li>
+<li><p><strong>per_capita</strong>(total_pop=True)</p></li>
+<li><p><strong>plot</strong>(**kwargs)</p></li>
+<li><p><strong>plus</strong>(object2)</p></li>
+<li><p><strong>recent</strong>(N)</p></li>
+<li><p><strong>recessions</strong>(color=’0.5’, alpha = 0.5)</p></li>
+<li><p><strong>times</strong>(object2)</p></li>
+<li><p><strong>window</strong>(win)</p></li>
+</ul>
+<p>The fredpy documentation has detailed explanations of the use of these methods: <a class="reference external" href="https://www.briancjenkins.com/fredpy/docs/build/html/series_class.html">https://www.briancjenkins.com/fredpy/docs/build/html/series_class.html</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restrict GDP to observations from January 1, 1990 to present</span>
+<span class="n">win</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;01-01-1990&#39;</span><span class="p">,</span><span class="s1">&#39;01-01-2200&#39;</span><span class="p">]</span>
+<span class="n">gdp_win</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
+
+<span class="c1"># Plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp_win</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">gdp_win</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">gdp_win</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+
+<span class="c1"># Plot recession bars</span>
+<span class="n">gdp_win</span><span class="o">.</span><span class="n">recessions</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_16_0.png" src="_images/fredpy_examples_16_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute and plot the (annualized) quarterly growth rate of real GDP</span>
+<span class="n">gdp_pc</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">pc</span><span class="p">(</span><span class="n">annualized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp_pc</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">gdp_pc</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">gdp_pc</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+
+<span class="c1"># Plot recession bars</span>
+<span class="n">gdp_pc</span><span class="o">.</span><span class="n">recessions</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_17_0.png" src="_images/fredpy_examples_17_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute and plot the log of real GDP</span>
+<span class="n">gdp_log</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>
+
+<span class="c1"># Plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp_log</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">gdp_log</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">gdp_log</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_18_0.png" src="_images/fredpy_examples_18_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="More-examples">
+<h2>More examples<a class="headerlink" href="#More-examples" title="Permalink to this heading">¶</a></h2>
+<p>The following examples demonstrate some additional <code class="docutils literal notranslate"><span class="pre">fredpy</span></code> functionality.</p>
+<section id="Comparison-of-CPI-and-GDP-deflator-inflation">
+<h3>Comparison of CPI and GDP deflator inflation<a class="headerlink" href="#Comparison-of-CPI-and-GDP-deflator-inflation" title="Permalink to this heading">¶</a></h3>
+<p>CPI data are released monthly by the BLS while GDP deflator data are released quarterly by the BEA. Here we’ll first convert the monthly CPI data to monthly frequency compute inflation as the percentage change in the respective index since on year prior.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download CPI and GDP deflator data</span>
+<span class="n">cpi</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;CPIAUCSL&#39;</span><span class="p">)</span>
+<span class="n">deflator</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;GDPDEF&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cpi</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">cpi</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">cpi</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">deflator</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-m&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">deflator</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">deflator</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+
+<span class="c1"># Imporove use of whitespace</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_21_0.png" src="_images/fredpy_examples_21_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The CPI data are produced at a monthly frequency</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cpi</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span>
+
+<span class="c1"># Convert CPI data to quarterly frequency to conform with the GDP deflator</span>
+<span class="n">cpi_Q</span> <span class="o">=</span> <span class="n">cpi</span><span class="o">.</span><span class="n">as_frequency</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s1">&#39;Q&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cpi_Q</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Monthly
+Quarterly
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the inflation rate based on each index</span>
+<span class="n">cpi_pi</span> <span class="o">=</span> <span class="n">cpi_Q</span><span class="o">.</span><span class="n">apc</span><span class="p">()</span>
+<span class="n">def_pi</span> <span class="o">=</span> <span class="n">deflator</span><span class="o">.</span><span class="n">apc</span><span class="p">()</span>
+
+<span class="c1"># Print date ranges for new inflation series</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cpi_pi</span><span class="o">.</span><span class="n">date_range</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">def_pi</span><span class="o">.</span><span class="n">date_range</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Range: 1948-01-01 to 2022-10-01
+Range: 1948-01-01 to 2022-10-01
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cpi_pi</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;cpi&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">def_pi</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;def&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;US inflation&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Percent&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_24_0.png" src="_images/fredpy_examples_24_0.png" />
+</div>
+</div>
+<p>Even though the CPI inflation rate is on average about .3% higher the GDP deflator inflation rate, the CPI and the GDP deflator produce comparable measures of US inflation.</p>
+</section>
+<section id="Equalizing-date-ranges-of-different-series">
+<h3>Equalizing date ranges of different series<a class="headerlink" href="#Equalizing-date-ranges-of-different-series" title="Permalink to this heading">¶</a></h3>
+<p>Often data series have different observation ranges. The <a class="reference internal" href="additional_functions.html#fredpy.window_equalize" title="fredpy.window_equalize"><code class="xref py py-func docutils literal notranslate"><span class="pre">fredpy.window_equalize()</span></code></a> function provides a quick way to set the date ranges for multiple series to the same interval.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download unemployment and 3 month T-bill data</span>
+<span class="n">unemp</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;UNRATE&#39;</span><span class="p">)</span>
+<span class="n">tbill_3m</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;TB3MS&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print date ranges for series</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">unemp</span><span class="o">.</span><span class="n">date_range</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tbill_3m</span><span class="o">.</span><span class="n">date_range</span><span class="p">)</span>
+
+<span class="c1"># Equalize the date ranges</span>
+<span class="n">unemp</span><span class="p">,</span> <span class="n">tbill_3m</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">window_equalize</span><span class="p">([</span><span class="n">unemp</span><span class="p">,</span> <span class="n">tbill_3m</span><span class="p">])</span>
+
+<span class="c1"># Print the new date ranges for series</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">unemp</span><span class="o">.</span><span class="n">date_range</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tbill_3m</span><span class="o">.</span><span class="n">date_range</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Range: 1948-01-01 to 2023-01-01
+Range: 1934-01-01 to 2023-01-01
+
+Range: 1948-01-01 to 2023-01-01
+Range: 1948-01-01 to 2023-01-01
+</pre></div></div>
+</div>
+</section>
+<section id="Filtering-1:-Extracting-business-cycle-components-from-quarterly-data-with-the-HP-filter">
+<h3>Filtering 1: Extracting business cycle components from quarterly data with the HP filter<a class="headerlink" href="#Filtering-1:-Extracting-business-cycle-components-from-quarterly-data-with-the-HP-filter" title="Permalink to this heading">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download nominal GDP, the GDP deflator</span>
+
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;GDP&#39;</span><span class="p">)</span>
+<span class="n">defl</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;GDPDEF&#39;</span><span class="p">)</span>
+
+<span class="c1"># Make sure that all series have the same window of observation</span>
+<span class="n">gdp</span><span class="p">,</span><span class="n">defl</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">window_equalize</span><span class="p">([</span><span class="n">gdp</span><span class="p">,</span><span class="n">defl</span><span class="p">])</span>
+
+<span class="c1"># Deflate GDP series</span>
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">defl</span><span class="p">)</span>
+
+<span class="c1"># Convert GDP to per capita terms</span>
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">per_capita</span><span class="p">()</span>
+
+<span class="c1"># Take log of GDP</span>
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">log</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot log data</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;log real GDP per capita&#39;</span><span class="p">)</span>
+<span class="n">gdp</span><span class="o">.</span><span class="n">recessions</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_30_0.png" src="_images/fredpy_examples_30_0.png" />
+</div>
+</div>
+<p>The post-Great Recession slowdown in US real GDP growth is apparent in the figure.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the hpfilter</span>
+<span class="n">gdp_cycle</span><span class="p">,</span> <span class="n">gdp_trend</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">hp_filter</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot log data</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;actual&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp_trend</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;HP trend&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;log real GDP per capita&#39;</span><span class="p">)</span>
+<span class="n">gdp</span><span class="o">.</span><span class="n">recessions</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp_cycle</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;HP cycle&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;log real GDP per capita - dev from trend&#39;</span><span class="p">)</span>
+<span class="n">gdp</span><span class="o">.</span><span class="n">recessions</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+
+<span class="c1"># Imporove use of whitespace</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_33_0.png" src="_images/fredpy_examples_33_0.png" />
+</div>
+</div>
+</section>
+<section id="Filtering-2:-Extracting-business-cycle-components-from-monthly-data">
+<h3>Filtering 2: Extracting business cycle components from monthly data<a class="headerlink" href="#Filtering-2:-Extracting-business-cycle-components-from-monthly-data" title="Permalink to this heading">¶</a></h3>
+<p>In Figure 1.5 from <em>The Conquest of American Inflation</em>, Thomas Sargent compares the business cycle componenets (BP filtered) of monthly inflation and unemployment data for the US from 1960-1982. Here we replicate Figure 1.5 to include the most recently available data and we also consturct the figure using HP filtered data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;LNS14000028&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;CPIAUCSL&#39;</span><span class="p">)</span>
+
+<span class="c1"># Construct the inflation series</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">pc</span><span class="p">(</span><span class="n">annualized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">ma</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Make sure that the data inflation and unemployment series cver the same time interval</span>
+<span class="n">p</span><span class="p">,</span><span class="n">u</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">window_equalize</span><span class="p">([</span><span class="n">p</span><span class="p">,</span><span class="n">u</span><span class="p">])</span>
+
+<span class="c1"># Data</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Unemployment&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Percent&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inflation&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Percent&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_35_0.png" src="_images/fredpy_examples_35_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter the data</span>
+<span class="n">p_bpcycle</span><span class="p">,</span><span class="n">p_bptrend</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">bp_filter</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span><span class="n">high</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span><span class="n">K</span><span class="o">=</span><span class="mi">84</span><span class="p">)</span>
+<span class="n">u_bpcycle</span><span class="p">,</span><span class="n">u_bptrend</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">bp_filter</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span><span class="n">high</span><span class="o">=</span><span class="mi">84</span><span class="p">,</span><span class="n">K</span><span class="o">=</span><span class="mi">84</span><span class="p">)</span>
+
+<span class="c1"># Scatter plot of BP-filtered inflation and unemployment data (Sargent&#39;s Figure 1.5)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u_bpcycle</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">u_bpcycle</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">p_bpcycle</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Unemployment rate (%)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Inflation rate (%)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inflation and unemployment: BP-filtered data&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cbar</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="n">p_bpcycle</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cbar</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()[:]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_36_0.png" src="_images/fredpy_examples_36_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HP filter</span>
+<span class="n">p_hpcycle</span><span class="p">,</span><span class="n">p_hptrend</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">hp_filter</span><span class="p">(</span><span class="n">lamb</span><span class="o">=</span><span class="mi">129600</span><span class="p">)</span>
+<span class="n">u_hpcycle</span><span class="p">,</span><span class="n">u_hptrend</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">hp_filter</span><span class="p">(</span><span class="n">lamb</span><span class="o">=</span><span class="mi">129600</span><span class="p">)</span>
+
+<span class="c1"># Scatter plot of HP-filtered inflation and unemployment data (Sargent&#39;s Figure 1.5)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u_hpcycle</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">u_hpcycle</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">p_hpcycle</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">facecolors</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Unemployment rate (%)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Inflation rate (%)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Inflation and unemployment: HP-filtered data&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cbar</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="n">p_hpcycle</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cbar</span><span class="o">.</span><span class="n">get_ticks</span><span class="p">()[:]])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_37_0.png" src="_images/fredpy_examples_37_0.png" />
+</div>
+</div>
+<p>The choice of filterning method appears to strongly influence the results. While both filtering methods produce a downward-sloping relationship between inflation and unemployment, the relationship is more pronounced in the BP-filtered data.</p>
+</section>
+<section id="Vintage-Data">
+<h3>Vintage Data<a class="headerlink" href="#Vintage-Data" title="Permalink to this heading">¶</a></h3>
+<p>Data are updated and ALFRED, ArchivaL Federal Reserve Economic Data, stores historical data versions. Use <code class="docutils literal notranslate"><span class="pre">get_vintage_dates()</span></code> to find the avilable vintage dates for a FRED series. For example, let’s consider US GDP data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get all available vintages</span>
+<span class="n">gdp_vintage_dates</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">get_vintage_dates</span><span class="p">(</span><span class="s1">&#39;GDPA&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of vintages available:&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">gdp_vintage_dates</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Oldest vintage:              &#39;</span><span class="p">,</span><span class="n">gdp_vintage_dates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Most recent vintage:         &#39;</span><span class="p">,</span><span class="n">gdp_vintage_dates</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of vintages available: 342
+Oldest vintage:               1991-12-04
+Most recent vintage:          1992-01-29
+</pre></div></div>
+</div>
+<p>From the available vintage dates, use the <code class="docutils literal notranslate"><span class="pre">observation_date</span></code> keyword in <code class="docutils literal notranslate"><span class="pre">series()</span></code> to download a desired vintage. For example, download and plot the oldest available and most recent US GDP data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download oldest available GDP data</span>
+<span class="n">gdp_old</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;GDPA&#39;</span><span class="p">,</span><span class="n">observation_date</span> <span class="o">=</span> <span class="n">gdp_vintage_dates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Download most recently available GDP data</span>
+<span class="n">gdp_cur</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="s1">&#39;GDPA&#39;</span><span class="p">,</span><span class="n">observation_date</span> <span class="o">=</span> <span class="n">gdp_vintage_dates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Equalize date ranges</span>
+<span class="n">gdp_old</span><span class="p">,</span> <span class="n">gdp_cur</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">window_equalize</span><span class="p">([</span><span class="n">gdp_old</span><span class="p">,</span> <span class="n">gdp_cur</span><span class="p">])</span>
+
+
+<span class="c1"># Plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp_old</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">gdp_vintage_dates</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;Vintage: %b %Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdp_cur</span><span class="o">.</span><span class="n">data</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.65</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">gdp_vintage_dates</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;Vintage: %b %Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">gdp_cur</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;US GDP&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_42_0.png" src="_images/fredpy_examples_42_0.png" />
+</div>
+</div>
+</section>
+<section id="Exporting-data-sets">
+<h3>Exporting data sets<a class="headerlink" href="#Exporting-data-sets" title="Permalink to this heading">¶</a></h3>
+<p>Exporting data inported with <code class="docutils literal notranslate"><span class="pre">fredpy</span></code> to csv files is easy with <code class="docutils literal notranslate"><span class="pre">Pandas</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a Pandas DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;inflation&#39;</span><span class="p">:</span><span class="n">p</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                    <span class="s1">&#39;unemployment&#39;</span><span class="p">:</span><span class="n">u</span><span class="o">.</span><span class="n">data</span><span class="p">},)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># Export to csv</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+            inflation  unemployment
+date
+1954-01-01   0.338565           3.6
+1954-02-01  -0.625714           3.8
+1954-03-01   0.630199           4.1
+1954-04-01   0.555030           4.7
+1954-05-01  -0.557835           4.6
+</pre></div></div>
+</div>
+</section>
+<section id="Custom-API-querries">
+<h3>Custom API querries<a class="headerlink" href="#Custom-API-querries" title="Permalink to this heading">¶</a></h3>
+<p>The FRED API allows for more specific querries than what is available through the basic <code class="docutils literal notranslate"><span class="pre">fredpy</span></code> functionality. Read more about allowable querries to the API here: <a class="reference external" href="https://fred.stlouisfed.org/docs/api/fred/">https://fred.stlouisfed.org/docs/api/fred/</a></p>
+<p>In the cell below, I demonstrate how to manually retrieve unemployment data using the <a class="reference internal" href="additional_functions.html#fredpy.fred_api_request" title="fredpy.fred_api_request"><code class="xref py py-func docutils literal notranslate"><span class="pre">fredpy.fred_api_request()</span></code></a> function.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="c1"># Specify the API path</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;fred/series/observations&#39;</span>
+
+<span class="c1"># Set observation_date string as today&#39;s date</span>
+<span class="n">observation_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Specify desired parameter values for the API querry</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;series_id&#39;</span><span class="p">:</span><span class="s1">&#39;unrate&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;observation_date&#39;</span><span class="p">:</span><span class="n">observation_date</span><span class="p">,</span>
+  <span class="s1">&#39;file_type&#39;</span><span class="p">:</span><span class="s1">&#39;json&#39;</span>
+ <span class="p">}</span>
+
+<span class="c1"># API request</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">fred_api_request</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">fp</span><span class="o">.</span><span class="n">api_key</span><span class="p">,</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span><span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+
+<span class="c1"># Return results in JSON forma</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="c1"># Load data, deal with missing values, format dates in index, and set dtype</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;observations&#39;</span><span class="p">],</span><span class="n">columns</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Plot the unemployment rate</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Unemployment Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/fredpy_examples_46_0.png" src="_images/fredpy_examples_46_0.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2024, Brian C. Jenkins.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.0.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: fredpy
+Version: 3.2.8
+Summary: A package for downloading and working with data from Federal Reserve Economic Data
+Home-page: https://github.com/letsgoexploring/fredpy-package
+Author: Brian C. Jenkins
+Author-email: bcjenkin@uci.edu
+Keywords: fred,economics,data,federal reserve
+License-File: LICENSE
