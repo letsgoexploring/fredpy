@@ -14,4 +14,4 @@ Or download the source here: https://github.com/letsgoexploring/fredpy/blob/gh-p
 ## Documentation
 Documentation for fredpy: https://www.briancjenkins.com/fredpy/docs/build/html/
 
-_Updated: July 29, 2024_
+_Updated: April 7, 2025_
