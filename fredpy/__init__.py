@@ -11,47 +11,56 @@ import time
 tsa = sm.tsa
 
 # Read recession data. First try to parse html table at nber.org
+# try:
+#     # Read HTML table at nber.org
+#     tables = pd.read_html('https://www.nber.org/research/data/us-business-cycle-expansions-and-contractions',header=0)
+
+
+#     # Remove the first row because there is no starting peak
+#     cycle_dates = tables[0]
+
+#     # Remove the first two rows. Frist has metadata and second has no peak month
+#     cycle_dates = cycle_dates.drop([0,1]).reset_index(drop=True)
+
+#     # Find the unnecessary rows at bottom of table and drop
+#     for i in cycle_dates.index:
+#         try:
+#             if np.isnan(cycle_dates.loc[i,'Peak Month (Peak Quarter)']):
+#                 break
+#         except:
+#             pass
+        
+#     cycle_dates = cycle_dates.loc[:i-1,['Peak Month (Peak Quarter)','Trough Month (Trough Quarter)']]
+#     cycle_dates.columns = ['peaks','troughs']
+
+#     cycle_dates['peaks'] = cycle_dates['peaks'].str.split(r' \(', expand=True)[0]
+#     cycle_dates['troughs'] = cycle_dates['troughs'].str.split(r' \(', expand=True)[0]
+
+#     ### SOMETHING ABOUT DETECTING IF RECESSION IS UNDERWAY ###
+#     #     Check if last element of troughs is not a date
+#     #     If so, set to today's date with "%B %Y" format
+
+#     cycle_dates['peaks'] = pd.to_datetime(cycle_dates['peaks'],format="%B %Y")
+#     cycle_dates['troughs'] = pd.to_datetime(cycle_dates['troughs'],format="%B %Y")
+
+#     cycle_dates.tail()
+
+# except:
+
 try:
-    # Read HTML table at nber.org
-    tables = pd.read_html('https://www.nber.org/research/data/us-business-cycle-expansions-and-contractions')
-
-    # Remove the first row because there is no starting peak
-    cycle_dates = tables[0]
-
-    # Remove the first row that has not peak date
-    cycle_dates = cycle_dates.drop(0).reset_index(drop=True)
+    # Read table of NBER peak/trough dates on my GitHub page
+    cycle_dates = pd.read_csv('https://raw.githubusercontent.com/letsgoexploring/fredpy/refs/heads/gh-pages/business%20cycle%20dates/business_cycle_dates.csv')
 
     # Is a recession currently underway? Set today as the trough
-    if not cycle_dates['Business Cycle Reference Dates','Trough Year'].iloc[-1].isdigit():
-        
-        today = pd.to_datetime('today').date()
-        
-        cycle_dates.loc[cycle_dates.index[-1],('Business Cycle Reference Dates','Trough Year')] = str(today.year)
-        cycle_dates.loc[cycle_dates.index[-1],('Business Cycle Reference Dates','Trough Month')] = str(today.month_name())
-
-    # Join month and year columns to produce datetime columns for peak and trough dates
-    cycle_dates['peaks'] = pd.to_datetime(cycle_dates['Business Cycle Reference Dates','Peak Year'].astype(str).astype(str).str.replace('*','',regex=False) + '-' + cycle_dates['Business Cycle Reference Dates','Peak Month'].astype(str).str.replace('*','',regex=False))
-    cycle_dates['troughs'] = pd.to_datetime(cycle_dates['Business Cycle Reference Dates','Trough Year'].astype(str).astype(str).str.replace('*','',regex=False) + '-' + cycle_dates['Business Cycle Reference Dates','Trough Month'].astype(str).str.replace('*','',regex=False))
-
-    # Drop unnecessary columns
-    cycle_dates = cycle_dates[['peaks','troughs']]
+    if pd.isna(cycle_dates.troughs.iloc[-1]):
+        cycle_dates.troughs.iloc[-1] = pd.to_datetime('today').strftime('%Y-%m-%d')
+    
+    # Overwrite  original columns with datetime values
+    cycle_dates['peaks'] = pd.to_datetime(cycle_dates.peaks)
+    cycle_dates['troughs'] = pd.to_datetime(cycle_dates.troughs)
 
 except:
-
-    try:
-        # Read table of NBER peak/trough dates on my GitHub page
-        cycle_dates = pd.read_csv('https://raw.githubusercontent.com/letsgoexploring/fredpy-package/gh-pages/business%20cycle%20dates/business_cycle_dates.csv')
-
-        # Is a recession currently underway? Set today as the trough
-        if pd.isna(cycle_dates.troughs.iloc[-1]):
-            cycle_dates.troughs.iloc[-1] = pd.to_datetime('today').strftime('%Y-%m-%d')
-        
-        # Overwrite  original columns with datetime values
-        cycle_dates['peaks'] = pd.to_datetime(cycle_dates.peaks)
-        cycle_dates['troughs'] = pd.to_datetime(cycle_dates.troughs)
-
-    except:
-        print('Internet connection required. Check connection.')
+    print('Internet connection required. Check connection.')
 
 # API key attribute needs to be set
 
@@ -356,7 +365,7 @@ class series:
         if self.t<new_series.t:
             warnings.warn('Warning: You are converting series to a higher frequency and this method may not behave as you expect.')
 
-        map_to_pandas_frequencies = {'D':'D','W':'W','M':'MS','Q':'QS','A':'AS'}
+        map_to_pandas_frequencies = {'D':'D','W':'W','M':'MS','Q':'QS','A':'YS'}
 
         if method == 'first':
 
